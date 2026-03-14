@@ -8,7 +8,9 @@ All URIs are relative to http://localhost:8080, except if the operation defines 
 | ------------- | ------------- | ------------- |
 | [**createDestination()**](DestinationsApi.md#createDestination) | **POST** /v1/destinations | Create destination |
 | [**getDestination()**](DestinationsApi.md#getDestination) | **GET** /v1/destinations/{id} | Get destination |
+| [**listDestinationPresets()**](DestinationsApi.md#listDestinationPresets) | **GET** /v1/destination-presets | List destination presets |
 | [**listDestinations()**](DestinationsApi.md#listDestinations) | **GET** /v1/destinations | List destinations |
+| [**rotateDestinationSecret()**](DestinationsApi.md#rotateDestinationSecret) | **POST** /v1/destinations/{id}/rotate-secret | Rotate destination signing secret |
 | [**updateDestination()**](DestinationsApi.md#updateDestination) | **PATCH** /v1/destinations/{id} | Update destination |
 
 
@@ -134,6 +136,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listDestinationPresets()`
+
+```php
+listDestinationPresets(): \Gethook\Model\DestinationPreset[]
+```
+
+List destination presets
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Gethook\Api\DestinationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->listDestinationPresets();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DestinationsApi->listDestinationPresets: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Gethook\Model\DestinationPreset[]**](../Model/DestinationPreset.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listDestinations()`
 
 ```php
@@ -185,6 +238,68 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `rotateDestinationSecret()`
+
+```php
+rotateDestinationSecret($id, $body): object
+```
+
+Rotate destination signing secret
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = Gethook\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Gethook\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Gethook\Api\DestinationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Destination UUID
+$body = array('key' => new \stdClass); // object | New signing secret
+
+try {
+    $result = $apiInstance->rotateDestinationSecret($id, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DestinationsApi->rotateDestinationSecret: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Destination UUID | |
+| **body** | **object**| New signing secret | |
+
+### Return type
+
+**object**
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

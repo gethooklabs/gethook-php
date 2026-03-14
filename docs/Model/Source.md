@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **ingest_url** | **string** |  |
 **name** | **string** |  |
 **path_token** | **string** |  |
+**provider** | **string** |  | [optional]
 **status** | **string** |  |
 **verification_config** | **object** |  | [optional]
 

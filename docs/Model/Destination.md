@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **custom_headers** | **object** |  | [optional]
 **id** | **string** |  |
 **name** | **string** |  |
+**preset** | **string** |  | [optional]
 **timeout_seconds** | **int** |  |
 **url** | **string** |  |
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Destination
+ * DestinationPreset
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Gethook\ObjectSerializer;
 
 /**
- * Destination Class Doc Comment
+ * DestinationPreset Class Doc Comment
  *
  * @category Class
  * @package  Gethook
@@ -40,7 +40,7 @@ use \Gethook\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
+class DestinationPreset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Destination';
+    protected static $openAPIModelName = 'DestinationPreset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,16 +57,17 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'active' => 'bool',
-        'auth_config' => 'object',
-        'created_at' => 'string',
-        'custom_headers' => 'object',
+        'auth_header' => 'string',
+        'auth_label' => 'string',
+        'auth_type' => 'string',
+        'category' => 'string',
+        'color' => 'string',
+        'description' => 'string',
+        'docs_url' => 'string',
+        'extra_headers' => 'array<string,string>',
         'id' => 'string',
         'name' => 'string',
-        'preset' => 'string',
-        'timeout_seconds' => 'int',
-        'url' => 'string'
+        'url_hint' => 'string'
     ];
 
     /**
@@ -77,16 +78,17 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => null,
-        'active' => null,
-        'auth_config' => null,
-        'created_at' => null,
-        'custom_headers' => null,
+        'auth_header' => null,
+        'auth_label' => null,
+        'auth_type' => null,
+        'category' => null,
+        'color' => null,
+        'description' => null,
+        'docs_url' => null,
+        'extra_headers' => null,
         'id' => null,
         'name' => null,
-        'preset' => null,
-        'timeout_seconds' => null,
-        'url' => null
+        'url_hint' => null
     ];
 
     /**
@@ -95,16 +97,17 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'account_id' => false,
-        'active' => false,
-        'auth_config' => false,
-        'created_at' => false,
-        'custom_headers' => false,
+        'auth_header' => false,
+        'auth_label' => false,
+        'auth_type' => false,
+        'category' => false,
+        'color' => false,
+        'description' => false,
+        'docs_url' => false,
+        'extra_headers' => false,
         'id' => false,
         'name' => false,
-        'preset' => false,
-        'timeout_seconds' => false,
-        'url' => false
+        'url_hint' => false
     ];
 
     /**
@@ -193,16 +196,17 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'active' => 'active',
-        'auth_config' => 'auth_config',
-        'created_at' => 'created_at',
-        'custom_headers' => 'custom_headers',
+        'auth_header' => 'auth_header',
+        'auth_label' => 'auth_label',
+        'auth_type' => 'auth_type',
+        'category' => 'category',
+        'color' => 'color',
+        'description' => 'description',
+        'docs_url' => 'docs_url',
+        'extra_headers' => 'extra_headers',
         'id' => 'id',
         'name' => 'name',
-        'preset' => 'preset',
-        'timeout_seconds' => 'timeout_seconds',
-        'url' => 'url'
+        'url_hint' => 'url_hint'
     ];
 
     /**
@@ -211,16 +215,17 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'active' => 'setActive',
-        'auth_config' => 'setAuthConfig',
-        'created_at' => 'setCreatedAt',
-        'custom_headers' => 'setCustomHeaders',
+        'auth_header' => 'setAuthHeader',
+        'auth_label' => 'setAuthLabel',
+        'auth_type' => 'setAuthType',
+        'category' => 'setCategory',
+        'color' => 'setColor',
+        'description' => 'setDescription',
+        'docs_url' => 'setDocsUrl',
+        'extra_headers' => 'setExtraHeaders',
         'id' => 'setId',
         'name' => 'setName',
-        'preset' => 'setPreset',
-        'timeout_seconds' => 'setTimeoutSeconds',
-        'url' => 'setUrl'
+        'url_hint' => 'setUrlHint'
     ];
 
     /**
@@ -229,16 +234,17 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'active' => 'getActive',
-        'auth_config' => 'getAuthConfig',
-        'created_at' => 'getCreatedAt',
-        'custom_headers' => 'getCustomHeaders',
+        'auth_header' => 'getAuthHeader',
+        'auth_label' => 'getAuthLabel',
+        'auth_type' => 'getAuthType',
+        'category' => 'getCategory',
+        'color' => 'getColor',
+        'description' => 'getDescription',
+        'docs_url' => 'getDocsUrl',
+        'extra_headers' => 'getExtraHeaders',
         'id' => 'getId',
         'name' => 'getName',
-        'preset' => 'getPreset',
-        'timeout_seconds' => 'getTimeoutSeconds',
-        'url' => 'getUrl'
+        'url_hint' => 'getUrlHint'
     ];
 
     /**
@@ -298,16 +304,17 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('auth_config', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('custom_headers', $data ?? [], null);
+        $this->setIfExists('auth_header', $data ?? [], null);
+        $this->setIfExists('auth_label', $data ?? [], null);
+        $this->setIfExists('auth_type', $data ?? [], null);
+        $this->setIfExists('category', $data ?? [], null);
+        $this->setIfExists('color', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('docs_url', $data ?? [], null);
+        $this->setIfExists('extra_headers', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('preset', $data ?? [], null);
-        $this->setIfExists('timeout_seconds', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('url_hint', $data ?? [], null);
     }
 
     /**
@@ -337,27 +344,6 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['account_id'] === null) {
-            $invalidProperties[] = "'account_id' can't be null";
-        }
-        if ($this->container['active'] === null) {
-            $invalidProperties[] = "'active' can't be null";
-        }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['timeout_seconds'] === null) {
-            $invalidProperties[] = "'timeout_seconds' can't be null";
-        }
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -374,136 +360,217 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets account_id
+     * Gets auth_header
      *
-     * @return string
+     * @return string|null
      */
-    public function getAccountId()
+    public function getAuthHeader()
     {
-        return $this->container['account_id'];
+        return $this->container['auth_header'];
     }
 
     /**
-     * Sets account_id
+     * Sets auth_header
      *
-     * @param string $account_id account_id
+     * @param string|null $auth_header for api_key type
      *
      * @return self
      */
-    public function setAccountId($account_id)
+    public function setAuthHeader($auth_header)
     {
-        if (is_null($account_id)) {
-            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
+        if (is_null($auth_header)) {
+            throw new \InvalidArgumentException('non-nullable auth_header cannot be null');
         }
-        $this->container['account_id'] = $account_id;
+        $this->container['auth_header'] = $auth_header;
 
         return $this;
     }
 
     /**
-     * Gets active
+     * Gets auth_label
      *
-     * @return bool
+     * @return string|null
      */
-    public function getActive()
+    public function getAuthLabel()
     {
-        return $this->container['active'];
+        return $this->container['auth_label'];
     }
 
     /**
-     * Sets active
+     * Sets auth_label
      *
-     * @param bool $active active
+     * @param string|null $auth_label e.g. \"Bot Token\", \"API Key\"
      *
      * @return self
      */
-    public function setActive($active)
+    public function setAuthLabel($auth_label)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        if (is_null($auth_label)) {
+            throw new \InvalidArgumentException('non-nullable auth_label cannot be null');
         }
-        $this->container['active'] = $active;
+        $this->container['auth_label'] = $auth_label;
 
         return $this;
     }
 
     /**
-     * Gets auth_config
+     * Gets auth_type
      *
-     * @return object|null
+     * @return string|null
      */
-    public function getAuthConfig()
+    public function getAuthType()
     {
-        return $this->container['auth_config'];
+        return $this->container['auth_type'];
     }
 
     /**
-     * Sets auth_config
+     * Sets auth_type
      *
-     * @param object|null $auth_config auth_config
+     * @param string|null $auth_type \"none\", \"bearer\", \"api_key\"
      *
      * @return self
      */
-    public function setAuthConfig($auth_config)
+    public function setAuthType($auth_type)
     {
-        if (is_null($auth_config)) {
-            throw new \InvalidArgumentException('non-nullable auth_config cannot be null');
+        if (is_null($auth_type)) {
+            throw new \InvalidArgumentException('non-nullable auth_type cannot be null');
         }
-        $this->container['auth_config'] = $auth_config;
+        $this->container['auth_type'] = $auth_type;
 
         return $this;
     }
 
     /**
-     * Gets created_at
+     * Gets category
      *
-     * @return string
+     * @return string|null
      */
-    public function getCreatedAt()
+    public function getCategory()
     {
-        return $this->container['created_at'];
+        return $this->container['category'];
     }
 
     /**
-     * Sets created_at
+     * Sets category
      *
-     * @param string $created_at created_at
+     * @param string|null $category category
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setCategory($category)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['category'] = $category;
 
         return $this;
     }
 
     /**
-     * Gets custom_headers
+     * Gets color
      *
-     * @return object|null
+     * @return string|null
      */
-    public function getCustomHeaders()
+    public function getColor()
     {
-        return $this->container['custom_headers'];
+        return $this->container['color'];
     }
 
     /**
-     * Sets custom_headers
+     * Sets color
      *
-     * @param object|null $custom_headers custom_headers
+     * @param string|null $color color
      *
      * @return self
      */
-    public function setCustomHeaders($custom_headers)
+    public function setColor($color)
     {
-        if (is_null($custom_headers)) {
-            throw new \InvalidArgumentException('non-nullable custom_headers cannot be null');
+        if (is_null($color)) {
+            throw new \InvalidArgumentException('non-nullable color cannot be null');
         }
-        $this->container['custom_headers'] = $custom_headers;
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets docs_url
+     *
+     * @return string|null
+     */
+    public function getDocsUrl()
+    {
+        return $this->container['docs_url'];
+    }
+
+    /**
+     * Sets docs_url
+     *
+     * @param string|null $docs_url docs_url
+     *
+     * @return self
+     */
+    public function setDocsUrl($docs_url)
+    {
+        if (is_null($docs_url)) {
+            throw new \InvalidArgumentException('non-nullable docs_url cannot be null');
+        }
+        $this->container['docs_url'] = $docs_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets extra_headers
+     *
+     * @return array<string,string>|null
+     */
+    public function getExtraHeaders()
+    {
+        return $this->container['extra_headers'];
+    }
+
+    /**
+     * Sets extra_headers
+     *
+     * @param array<string,string>|null $extra_headers extra_headers
+     *
+     * @return self
+     */
+    public function setExtraHeaders($extra_headers)
+    {
+        if (is_null($extra_headers)) {
+            throw new \InvalidArgumentException('non-nullable extra_headers cannot be null');
+        }
+        $this->container['extra_headers'] = $extra_headers;
 
         return $this;
     }
@@ -511,7 +578,7 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return string
+     * @return string|null
      */
     public function getId()
     {
@@ -521,7 +588,7 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string $id id
+     * @param string|null $id id
      *
      * @return self
      */
@@ -538,7 +605,7 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -548,7 +615,7 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return self
      */
@@ -563,82 +630,28 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets preset
+     * Gets url_hint
      *
      * @return string|null
      */
-    public function getPreset()
+    public function getUrlHint()
     {
-        return $this->container['preset'];
+        return $this->container['url_hint'];
     }
 
     /**
-     * Sets preset
+     * Sets url_hint
      *
-     * @param string|null $preset preset
+     * @param string|null $url_hint url_hint
      *
      * @return self
      */
-    public function setPreset($preset)
+    public function setUrlHint($url_hint)
     {
-        if (is_null($preset)) {
-            throw new \InvalidArgumentException('non-nullable preset cannot be null');
+        if (is_null($url_hint)) {
+            throw new \InvalidArgumentException('non-nullable url_hint cannot be null');
         }
-        $this->container['preset'] = $preset;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeout_seconds
-     *
-     * @return int
-     */
-    public function getTimeoutSeconds()
-    {
-        return $this->container['timeout_seconds'];
-    }
-
-    /**
-     * Sets timeout_seconds
-     *
-     * @param int $timeout_seconds timeout_seconds
-     *
-     * @return self
-     */
-    public function setTimeoutSeconds($timeout_seconds)
-    {
-        if (is_null($timeout_seconds)) {
-            throw new \InvalidArgumentException('non-nullable timeout_seconds cannot be null');
-        }
-        $this->container['timeout_seconds'] = $timeout_seconds;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url url
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
-        $this->container['url'] = $url;
+        $this->container['url_hint'] = $url_hint;
 
         return $this;
     }

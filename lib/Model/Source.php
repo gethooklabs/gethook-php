@@ -65,6 +65,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
         'ingest_url' => 'string',
         'name' => 'string',
         'path_token' => 'string',
+        'provider' => 'string',
         'status' => 'string',
         'verification_config' => 'object'
     ];
@@ -85,6 +86,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
         'ingest_url' => null,
         'name' => null,
         'path_token' => null,
+        'provider' => null,
         'status' => null,
         'verification_config' => null
     ];
@@ -103,6 +105,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
         'ingest_url' => false,
         'name' => false,
         'path_token' => false,
+        'provider' => false,
         'status' => false,
         'verification_config' => false
     ];
@@ -201,6 +204,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
         'ingest_url' => 'ingest_url',
         'name' => 'name',
         'path_token' => 'path_token',
+        'provider' => 'provider',
         'status' => 'status',
         'verification_config' => 'verification_config'
     ];
@@ -219,6 +223,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
         'ingest_url' => 'setIngestUrl',
         'name' => 'setName',
         'path_token' => 'setPathToken',
+        'provider' => 'setProvider',
         'status' => 'setStatus',
         'verification_config' => 'setVerificationConfig'
     ];
@@ -237,6 +242,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
         'ingest_url' => 'getIngestUrl',
         'name' => 'getName',
         'path_token' => 'getPathToken',
+        'provider' => 'getProvider',
         'status' => 'getStatus',
         'verification_config' => 'getVerificationConfig'
     ];
@@ -306,6 +312,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('ingest_url', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('path_token', $data ?? [], null);
+        $this->setIfExists('provider', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('verification_config', $data ?? [], null);
     }
@@ -588,6 +595,33 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable path_token cannot be null');
         }
         $this->container['path_token'] = $path_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets provider
+     *
+     * @return string|null
+     */
+    public function getProvider()
+    {
+        return $this->container['provider'];
+    }
+
+    /**
+     * Sets provider
+     *
+     * @param string|null $provider provider
+     *
+     * @return self
+     */
+    public function setProvider($provider)
+    {
+        if (is_null($provider)) {
+            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        }
+        $this->container['provider'] = $provider;
 
         return $this;
     }
