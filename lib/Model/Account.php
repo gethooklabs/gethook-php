@@ -61,7 +61,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'string',
         'id' => 'string',
         'name' => 'string',
-        'plan' => 'string'
+        'plan' => 'string',
+        'retention_days' => 'int'
     ];
 
     /**
@@ -76,7 +77,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => null,
         'id' => null,
         'name' => null,
-        'plan' => null
+        'plan' => null,
+        'retention_days' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => false,
         'id' => false,
         'name' => false,
-        'plan' => false
+        'plan' => false,
+        'retention_days' => false
     ];
 
     /**
@@ -182,7 +185,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'email',
         'id' => 'id',
         'name' => 'name',
-        'plan' => 'plan'
+        'plan' => 'plan',
+        'retention_days' => 'retention_days'
     ];
 
     /**
@@ -195,7 +199,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'setEmail',
         'id' => 'setId',
         'name' => 'setName',
-        'plan' => 'setPlan'
+        'plan' => 'setPlan',
+        'retention_days' => 'setRetentionDays'
     ];
 
     /**
@@ -208,7 +213,8 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'getEmail',
         'id' => 'getId',
         'name' => 'getName',
-        'plan' => 'getPlan'
+        'plan' => 'getPlan',
+        'retention_days' => 'getRetentionDays'
     ];
 
     /**
@@ -273,6 +279,7 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
+        $this->setIfExists('retention_days', $data ?? [], null);
     }
 
     /**
@@ -460,6 +467,33 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
         }
         $this->container['plan'] = $plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets retention_days
+     *
+     * @return int|null
+     */
+    public function getRetentionDays()
+    {
+        return $this->container['retention_days'];
+    }
+
+    /**
+     * Sets retention_days
+     *
+     * @param int|null $retention_days retention_days
+     *
+     * @return self
+     */
+    public function setRetentionDays($retention_days)
+    {
+        if (is_null($retention_days)) {
+            throw new \InvalidArgumentException('non-nullable retention_days cannot be null');
+        }
+        $this->container['retention_days'] = $retention_days;
 
         return $this;
     }
