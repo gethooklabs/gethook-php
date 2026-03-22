@@ -57,12 +57,11 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'created_at' => 'string',
-        'email' => 'string',
         'id' => 'string',
         'name' => 'string',
         'plan' => 'string',
-        'retention_days' => 'int'
+        'retention_days' => 'int',
+        'created_at' => 'string'
     ];
 
     /**
@@ -73,12 +72,11 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'created_at' => null,
-        'email' => null,
         'id' => null,
         'name' => null,
         'plan' => null,
-        'retention_days' => null
+        'retention_days' => null,
+        'created_at' => null
     ];
 
     /**
@@ -87,12 +85,11 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'created_at' => false,
-        'email' => false,
         'id' => false,
         'name' => false,
         'plan' => false,
-        'retention_days' => false
+        'retention_days' => false,
+        'created_at' => false
     ];
 
     /**
@@ -181,12 +178,11 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'created_at' => 'created_at',
-        'email' => 'email',
         'id' => 'id',
         'name' => 'name',
         'plan' => 'plan',
-        'retention_days' => 'retention_days'
+        'retention_days' => 'retention_days',
+        'created_at' => 'created_at'
     ];
 
     /**
@@ -195,12 +191,11 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'created_at' => 'setCreatedAt',
-        'email' => 'setEmail',
         'id' => 'setId',
         'name' => 'setName',
         'plan' => 'setPlan',
-        'retention_days' => 'setRetentionDays'
+        'retention_days' => 'setRetentionDays',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -209,12 +204,11 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'created_at' => 'getCreatedAt',
-        'email' => 'getEmail',
         'id' => 'getId',
         'name' => 'getName',
         'plan' => 'getPlan',
-        'retention_days' => 'getRetentionDays'
+        'retention_days' => 'getRetentionDays',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -274,12 +268,11 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('retention_days', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
 
     /**
@@ -309,9 +302,6 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
@@ -320,6 +310,12 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['plan'] === null) {
             $invalidProperties[] = "'plan' can't be null";
+        }
+        if ($this->container['retention_days'] === null) {
+            $invalidProperties[] = "'retention_days' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -335,60 +331,6 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email email
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
-        $this->container['email'] = $email;
-
-        return $this;
-    }
 
     /**
      * Gets id
@@ -474,7 +416,7 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets retention_days
      *
-     * @return int|null
+     * @return int
      */
     public function getRetentionDays()
     {
@@ -484,7 +426,7 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets retention_days
      *
-     * @param int|null $retention_days retention_days
+     * @param int $retention_days retention_days
      *
      * @return self
      */
@@ -494,6 +436,33 @@ class Account implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable retention_days cannot be null');
         }
         $this->container['retention_days'] = $retention_days;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

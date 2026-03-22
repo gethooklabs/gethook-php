@@ -58,7 +58,8 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'by_status' => '\Gethook\Model\StatsStatusItem[]',
-        'daily' => '\Gethook\Model\StatsDailyItem[]'
+        'daily' => '\Gethook\Model\StatsDailyItem[]',
+        'totals' => '\Gethook\Model\AggregateTotals'
     ];
 
     /**
@@ -70,7 +71,8 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'by_status' => null,
-        'daily' => null
+        'daily' => null,
+        'totals' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'by_status' => false,
-        'daily' => false
+        'daily' => false,
+        'totals' => false
     ];
 
     /**
@@ -170,7 +173,8 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'by_status' => 'by_status',
-        'daily' => 'daily'
+        'daily' => 'daily',
+        'totals' => 'totals'
     ];
 
     /**
@@ -180,7 +184,8 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'by_status' => 'setByStatus',
-        'daily' => 'setDaily'
+        'daily' => 'setDaily',
+        'totals' => 'setTotals'
     ];
 
     /**
@@ -190,7 +195,8 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'by_status' => 'getByStatus',
-        'daily' => 'getDaily'
+        'daily' => 'getDaily',
+        'totals' => 'getTotals'
     ];
 
     /**
@@ -252,6 +258,7 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('by_status', $data ?? [], null);
         $this->setIfExists('daily', $data ?? [], null);
+        $this->setIfExists('totals', $data ?? [], null);
     }
 
     /**
@@ -286,6 +293,9 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['daily'] === null) {
             $invalidProperties[] = "'daily' can't be null";
+        }
+        if ($this->container['totals'] === null) {
+            $invalidProperties[] = "'totals' can't be null";
         }
         return $invalidProperties;
     }
@@ -352,6 +362,33 @@ class StatsData implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable daily cannot be null');
         }
         $this->container['daily'] = $daily;
+
+        return $this;
+    }
+
+    /**
+     * Gets totals
+     *
+     * @return \Gethook\Model\AggregateTotals
+     */
+    public function getTotals()
+    {
+        return $this->container['totals'];
+    }
+
+    /**
+     * Sets totals
+     *
+     * @param \Gethook\Model\AggregateTotals $totals totals
+     *
+     * @return self
+     */
+    public function setTotals($totals)
+    {
+        if (is_null($totals)) {
+            throw new \InvalidArgumentException('non-nullable totals cannot be null');
+        }
+        $this->container['totals'] = $totals;
 
         return $this;
     }

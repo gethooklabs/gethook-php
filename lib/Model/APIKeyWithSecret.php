@@ -57,13 +57,15 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'created_at' => 'string',
         'id' => 'string',
-        'key' => 'string',
-        'key_prefix' => 'string',
+        'account_id' => 'string',
+        'user_id' => 'string',
         'name' => 'string',
-        'revoked_at' => 'string'
+        'role' => 'string',
+        'key_prefix' => 'string',
+        'created_at' => 'string',
+        'revoked_at' => 'string',
+        'key' => 'string'
     ];
 
     /**
@@ -74,13 +76,15 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => null,
-        'created_at' => null,
         'id' => null,
-        'key' => null,
-        'key_prefix' => null,
+        'account_id' => null,
+        'user_id' => null,
         'name' => null,
-        'revoked_at' => null
+        'role' => null,
+        'key_prefix' => null,
+        'created_at' => null,
+        'revoked_at' => null,
+        'key' => null
     ];
 
     /**
@@ -89,13 +93,15 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'account_id' => false,
-        'created_at' => false,
         'id' => false,
-        'key' => false,
-        'key_prefix' => false,
+        'account_id' => false,
+        'user_id' => false,
         'name' => false,
-        'revoked_at' => false
+        'role' => false,
+        'key_prefix' => false,
+        'created_at' => false,
+        'revoked_at' => false,
+        'key' => false
     ];
 
     /**
@@ -184,13 +190,15 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'created_at' => 'created_at',
         'id' => 'id',
-        'key' => 'key',
-        'key_prefix' => 'key_prefix',
+        'account_id' => 'account_id',
+        'user_id' => 'user_id',
         'name' => 'name',
-        'revoked_at' => 'revoked_at'
+        'role' => 'role',
+        'key_prefix' => 'key_prefix',
+        'created_at' => 'created_at',
+        'revoked_at' => 'revoked_at',
+        'key' => 'key'
     ];
 
     /**
@@ -199,13 +207,15 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'created_at' => 'setCreatedAt',
         'id' => 'setId',
-        'key' => 'setKey',
-        'key_prefix' => 'setKeyPrefix',
+        'account_id' => 'setAccountId',
+        'user_id' => 'setUserId',
         'name' => 'setName',
-        'revoked_at' => 'setRevokedAt'
+        'role' => 'setRole',
+        'key_prefix' => 'setKeyPrefix',
+        'created_at' => 'setCreatedAt',
+        'revoked_at' => 'setRevokedAt',
+        'key' => 'setKey'
     ];
 
     /**
@@ -214,13 +224,15 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'created_at' => 'getCreatedAt',
         'id' => 'getId',
-        'key' => 'getKey',
-        'key_prefix' => 'getKeyPrefix',
+        'account_id' => 'getAccountId',
+        'user_id' => 'getUserId',
         'name' => 'getName',
-        'revoked_at' => 'getRevokedAt'
+        'role' => 'getRole',
+        'key_prefix' => 'getKeyPrefix',
+        'created_at' => 'getCreatedAt',
+        'revoked_at' => 'getRevokedAt',
+        'key' => 'getKey'
     ];
 
     /**
@@ -280,13 +292,15 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('key', $data ?? [], null);
-        $this->setIfExists('key_prefix', $data ?? [], null);
+        $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('key_prefix', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('revoked_at', $data ?? [], null);
+        $this->setIfExists('key', $data ?? [], null);
     }
 
     /**
@@ -316,23 +330,26 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['account_id'] === null) {
-            $invalidProperties[] = "'account_id' can't be null";
-        }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['key'] === null) {
-            $invalidProperties[] = "'key' can't be null";
+        if ($this->container['account_id'] === null) {
+            $invalidProperties[] = "'account_id' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['role'] === null) {
+            $invalidProperties[] = "'role' can't be null";
         }
         if ($this->container['key_prefix'] === null) {
             $invalidProperties[] = "'key_prefix' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['key'] === null) {
+            $invalidProperties[] = "'key' can't be null";
         }
         return $invalidProperties;
     }
@@ -348,60 +365,6 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets account_id
-     *
-     * @return string
-     */
-    public function getAccountId()
-    {
-        return $this->container['account_id'];
-    }
-
-    /**
-     * Sets account_id
-     *
-     * @param string $account_id account_id
-     *
-     * @return self
-     */
-    public function setAccountId($account_id)
-    {
-        if (is_null($account_id)) {
-            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
-        }
-        $this->container['account_id'] = $account_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
 
     /**
      * Gets id
@@ -431,55 +394,55 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets key
+     * Gets account_id
      *
      * @return string
      */
-    public function getKey()
+    public function getAccountId()
     {
-        return $this->container['key'];
+        return $this->container['account_id'];
     }
 
     /**
-     * Sets key
+     * Sets account_id
      *
-     * @param string $key key
+     * @param string $account_id account_id
      *
      * @return self
      */
-    public function setKey($key)
+    public function setAccountId($account_id)
     {
-        if (is_null($key)) {
-            throw new \InvalidArgumentException('non-nullable key cannot be null');
+        if (is_null($account_id)) {
+            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
-        $this->container['key'] = $key;
+        $this->container['account_id'] = $account_id;
 
         return $this;
     }
 
     /**
-     * Gets key_prefix
+     * Gets user_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getKeyPrefix()
+    public function getUserId()
     {
-        return $this->container['key_prefix'];
+        return $this->container['user_id'];
     }
 
     /**
-     * Sets key_prefix
+     * Sets user_id
      *
-     * @param string $key_prefix key_prefix
+     * @param string|null $user_id user_id
      *
      * @return self
      */
-    public function setKeyPrefix($key_prefix)
+    public function setUserId($user_id)
     {
-        if (is_null($key_prefix)) {
-            throw new \InvalidArgumentException('non-nullable key_prefix cannot be null');
+        if (is_null($user_id)) {
+            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
         }
-        $this->container['key_prefix'] = $key_prefix;
+        $this->container['user_id'] = $user_id;
 
         return $this;
     }
@@ -512,6 +475,87 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param string $role role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            throw new \InvalidArgumentException('non-nullable role cannot be null');
+        }
+        $this->container['role'] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Gets key_prefix
+     *
+     * @return string
+     */
+    public function getKeyPrefix()
+    {
+        return $this->container['key_prefix'];
+    }
+
+    /**
+     * Sets key_prefix
+     *
+     * @param string $key_prefix key_prefix
+     *
+     * @return self
+     */
+    public function setKeyPrefix($key_prefix)
+    {
+        if (is_null($key_prefix)) {
+            throw new \InvalidArgumentException('non-nullable key_prefix cannot be null');
+        }
+        $this->container['key_prefix'] = $key_prefix;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
      * Gets revoked_at
      *
      * @return string|null
@@ -534,6 +578,33 @@ class APIKeyWithSecret implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable revoked_at cannot be null');
         }
         $this->container['revoked_at'] = $revoked_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets key
+     *
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->container['key'];
+    }
+
+    /**
+     * Sets key
+     *
+     * @param string $key Full plaintext key — returned once at creation time only.
+     *
+     * @return self
+     */
+    public function setKey($key)
+    {
+        if (is_null($key)) {
+            throw new \InvalidArgumentException('non-nullable key cannot be null');
+        }
+        $this->container['key'] = $key;
 
         return $this;
     }

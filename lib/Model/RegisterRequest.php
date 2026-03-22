@@ -57,8 +57,8 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string',
         'name' => 'string',
+        'email' => 'string',
         'password' => 'string'
     ];
 
@@ -70,8 +70,8 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => null,
         'name' => null,
+        'email' => null,
         'password' => null
     ];
 
@@ -81,8 +81,8 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'email' => false,
         'name' => false,
+        'email' => false,
         'password' => false
     ];
 
@@ -172,8 +172,8 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
         'name' => 'name',
+        'email' => 'email',
         'password' => 'password'
     ];
 
@@ -183,8 +183,8 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
         'name' => 'setName',
+        'email' => 'setEmail',
         'password' => 'setPassword'
     ];
 
@@ -194,8 +194,8 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
         'name' => 'getName',
+        'email' => 'getEmail',
         'password' => 'getPassword'
     ];
 
@@ -256,8 +256,8 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('password', $data ?? [], null);
     }
 
@@ -288,11 +288,11 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['email'] === null) {
-            $invalidProperties[] = "'email' can't be null";
-        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['email'] === null) {
+            $invalidProperties[] = "'email' can't be null";
         }
         if ($this->container['password'] === null) {
             $invalidProperties[] = "'password' can't be null";
@@ -311,33 +311,6 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string $email email
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
-        $this->container['email'] = $email;
-
-        return $this;
-    }
 
     /**
      * Gets name
@@ -362,6 +335,33 @@ class RegisterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string $email email
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        if (is_null($email)) {
+            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        }
+        $this->container['email'] = $email;
 
         return $this;
     }

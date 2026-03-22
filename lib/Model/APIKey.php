@@ -57,11 +57,13 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'created_at' => 'string',
         'id' => 'string',
-        'key_prefix' => 'string',
+        'account_id' => 'string',
+        'user_id' => 'string',
         'name' => 'string',
+        'role' => 'string',
+        'key_prefix' => 'string',
+        'created_at' => 'string',
         'revoked_at' => 'string'
     ];
 
@@ -73,11 +75,13 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => null,
-        'created_at' => null,
         'id' => null,
-        'key_prefix' => null,
+        'account_id' => null,
+        'user_id' => null,
         'name' => null,
+        'role' => null,
+        'key_prefix' => null,
+        'created_at' => null,
         'revoked_at' => null
     ];
 
@@ -87,11 +91,13 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'account_id' => false,
-        'created_at' => false,
         'id' => false,
-        'key_prefix' => false,
+        'account_id' => false,
+        'user_id' => false,
         'name' => false,
+        'role' => false,
+        'key_prefix' => false,
+        'created_at' => false,
         'revoked_at' => false
     ];
 
@@ -181,11 +187,13 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'created_at' => 'created_at',
         'id' => 'id',
-        'key_prefix' => 'key_prefix',
+        'account_id' => 'account_id',
+        'user_id' => 'user_id',
         'name' => 'name',
+        'role' => 'role',
+        'key_prefix' => 'key_prefix',
+        'created_at' => 'created_at',
         'revoked_at' => 'revoked_at'
     ];
 
@@ -195,11 +203,13 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'created_at' => 'setCreatedAt',
         'id' => 'setId',
-        'key_prefix' => 'setKeyPrefix',
+        'account_id' => 'setAccountId',
+        'user_id' => 'setUserId',
         'name' => 'setName',
+        'role' => 'setRole',
+        'key_prefix' => 'setKeyPrefix',
+        'created_at' => 'setCreatedAt',
         'revoked_at' => 'setRevokedAt'
     ];
 
@@ -209,11 +219,13 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'created_at' => 'getCreatedAt',
         'id' => 'getId',
-        'key_prefix' => 'getKeyPrefix',
+        'account_id' => 'getAccountId',
+        'user_id' => 'getUserId',
         'name' => 'getName',
+        'role' => 'getRole',
+        'key_prefix' => 'getKeyPrefix',
+        'created_at' => 'getCreatedAt',
         'revoked_at' => 'getRevokedAt'
     ];
 
@@ -274,11 +286,13 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('key_prefix', $data ?? [], null);
+        $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('key_prefix', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('revoked_at', $data ?? [], null);
     }
 
@@ -309,20 +323,23 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
         if ($this->container['account_id'] === null) {
             $invalidProperties[] = "'account_id' can't be null";
         }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['role'] === null) {
+            $invalidProperties[] = "'role' can't be null";
         }
         if ($this->container['key_prefix'] === null) {
             $invalidProperties[] = "'key_prefix' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -338,6 +355,33 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets account_id
@@ -367,55 +411,82 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets created_at
+     * Gets user_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getCreatedAt()
+    public function getUserId()
     {
-        return $this->container['created_at'];
+        return $this->container['user_id'];
     }
 
     /**
-     * Sets created_at
+     * Sets user_id
      *
-     * @param string $created_at created_at
+     * @param string|null $user_id user_id
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setUserId($user_id)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($user_id)) {
+            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['user_id'] = $user_id;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets name
      *
      * @return string
      */
-    public function getId()
+    public function getName()
     {
-        return $this->container['id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets id
+     * Sets name
      *
-     * @param string $id id
+     * @param string $name name
      *
      * @return self
      */
-    public function setId($id)
+    public function setName($name)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param string $role role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            throw new \InvalidArgumentException('non-nullable role cannot be null');
+        }
+        $this->container['role'] = $role;
 
         return $this;
     }
@@ -448,28 +519,28 @@ class APIKey implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets name
+     * Gets created_at
      *
      * @return string
      */
-    public function getName()
+    public function getCreatedAt()
     {
-        return $this->container['name'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets name
+     * Sets created_at
      *
-     * @param string $name name
+     * @param string $created_at created_at
      *
      * @return self
      */
-    public function setName($name)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

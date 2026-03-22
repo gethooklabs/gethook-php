@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateAPIKeyRequest
+ * AggregateTotals
  *
  * PHP version 8.1
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \Gethook\ObjectSerializer;
 
 /**
- * CreateAPIKeyRequest Class Doc Comment
+ * AggregateTotals Class Doc Comment
  *
  * @category Class
+ * @description Authoritative event totals derived from event_daily_stats (past days) plus live events (today). Accurate even after events are purged by the retention cleaner.
  * @package  Gethook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class AggregateTotals implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateAPIKeyRequest';
+    protected static $openAPIModelName = 'AggregateTotals';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +58,9 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'role' => 'string'
+        'total' => 'int',
+        'delivered' => 'int',
+        'failed' => 'int'
     ];
 
     /**
@@ -69,8 +71,9 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'role' => null
+        'total' => null,
+        'delivered' => null,
+        'failed' => null
     ];
 
     /**
@@ -79,8 +82,9 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => false,
-        'role' => false
+        'total' => false,
+        'delivered' => false,
+        'failed' => false
     ];
 
     /**
@@ -169,8 +173,9 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'role' => 'role'
+        'total' => 'total',
+        'delivered' => 'delivered',
+        'failed' => 'failed'
     ];
 
     /**
@@ -179,8 +184,9 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'role' => 'setRole'
+        'total' => 'setTotal',
+        'delivered' => 'setDelivered',
+        'failed' => 'setFailed'
     ];
 
     /**
@@ -189,8 +195,9 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'role' => 'getRole'
+        'total' => 'getTotal',
+        'delivered' => 'getDelivered',
+        'failed' => 'getFailed'
     ];
 
     /**
@@ -234,25 +241,6 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const ROLE_OWNER = 'owner';
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_EDITOR = 'editor';
-    public const ROLE_VIEWER = 'viewer';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getRoleAllowableValues()
-    {
-        return [
-            self::ROLE_OWNER,
-            self::ROLE_ADMIN,
-            self::ROLE_EDITOR,
-            self::ROLE_VIEWER,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -269,8 +257,9 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('delivered', $data ?? [], null);
+        $this->setIfExists('failed', $data ?? [], null);
     }
 
     /**
@@ -300,18 +289,15 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['total'] === null) {
+            $invalidProperties[] = "'total' can't be null";
         }
-        $allowedValues = $this->getRoleAllowableValues();
-        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'role', must be one of '%s'",
-                $this->container['role'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['delivered'] === null) {
+            $invalidProperties[] = "'delivered' can't be null";
         }
-
+        if ($this->container['failed'] === null) {
+            $invalidProperties[] = "'failed' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -328,65 +314,82 @@ class CreateAPIKeyRequest implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets name
+     * Gets total
      *
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getTotal()
     {
-        return $this->container['name'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets name
+     * Sets total
      *
-     * @param string $name name
+     * @param int $total total
      *
      * @return self
      */
-    public function setName($name)
+    public function setTotal($total)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['total'] = $total;
 
         return $this;
     }
 
     /**
-     * Gets role
+     * Gets delivered
      *
-     * @return string|null
+     * @return int
      */
-    public function getRole()
+    public function getDelivered()
     {
-        return $this->container['role'];
+        return $this->container['delivered'];
     }
 
     /**
-     * Sets role
+     * Sets delivered
      *
-     * @param string|null $role role
+     * @param int $delivered delivered
      *
      * @return self
      */
-    public function setRole($role)
+    public function setDelivered($delivered)
     {
-        if (is_null($role)) {
-            throw new \InvalidArgumentException('non-nullable role cannot be null');
+        if (is_null($delivered)) {
+            throw new \InvalidArgumentException('non-nullable delivered cannot be null');
         }
-        $allowedValues = $this->getRoleAllowableValues();
-        if (!in_array($role, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'role', must be one of '%s'",
-                    $role,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['delivered'] = $delivered;
+
+        return $this;
+    }
+
+    /**
+     * Gets failed
+     *
+     * @return int
+     */
+    public function getFailed()
+    {
+        return $this->container['failed'];
+    }
+
+    /**
+     * Sets failed
+     *
+     * @param int $failed failed
+     *
+     * @return self
+     */
+    public function setFailed($failed)
+    {
+        if (is_null($failed)) {
+            throw new \InvalidArgumentException('non-nullable failed cannot be null');
         }
-        $this->container['role'] = $role;
+        $this->container['failed'] = $failed;
 
         return $this;
     }
